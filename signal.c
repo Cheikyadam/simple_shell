@@ -81,3 +81,22 @@ void endSeCol(char *s)
 		}
 	}
 }
+
+/**
+ * existH - existP helper
+ * @P: the path
+ * @file: to display error
+ *
+ * Return: NULL
+ */
+
+char *existH(char **P, char *file)
+{
+	if (P != NULL)
+		free_p(P);
+
+	write(STDERR_FILENO, "./hsh: 1: ", _strlen("./hsh: 1: "));
+	write(STDERR_FILENO, file, _strlen(file));
+	write(STDERR_FILENO, ": not found\n ", _strlen(": not found\n"));
+	return (NULL);
+}

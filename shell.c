@@ -43,7 +43,7 @@ int h_fork(char **args, char *s, char **l_com)
 				if (tp == NULL)
 				{
 					EXIT_CODE = 127;
-					return (-1);
+					return (8);
 				}
 				free_c(args[0]);
 				args[0] = _strdup(tp);

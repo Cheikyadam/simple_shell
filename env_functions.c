@@ -87,44 +87,41 @@ char *existP(char *file)
 {
 	char **P = NULL;
 	struct stat st;
-	int l = 0, i = 0, j = 0, l_f = 0;
+	int l = 0, i = 0, l_f = 0;
 	char *tmp = NULL;
 
-	if (file == NULL)
-		return (NULL);
-	l_f = _strlen(file) + 2;
 	P = _pathD();
-	if (P == NULL)
-		return (NULL);
+	if (file == NULL || P == NULL)
+		return (existH(P, file));
+	l_f = _strlen(file) + 2;
 	l =  len_P();
 	if (l == -1)
-		return (NULL);
+		return (existH(P, file));
 	while (i != l)
 	{
 		if (P[i] == NULL)
-			return (NULL);
-		j = _strlen(P[i]) + l_f;
-		tmp = malloc(j);
+			return (existH(P, file));
+		tmp = malloc(_strlen(P[i]) + l_f);
 		if (tmp == NULL)
-			return (NULL);
+			return ((existH(P, file)));
 		tmp = _strcath(tmp, P[i]);
 		if (tmp == NULL)
-			return (NULL);
+			return ((existH(P, file)));
 		tmp = _strcat(tmp, "/");
 		tmp = _strcat(tmp, file);
 		if (tmp == NULL)
-			return (NULL);
+		{
+			return (existH(P, file));
+		}
 		if (stat(tmp, &st) == 0)
 		{
 			free_p(P);
 			return (tmp);
 		}
 		free_c(tmp);
-		j = 0;
 		i++;
 	}
-	free_p(P);
-	return (NULL);
+	return (existH(P, file));
 }
 
 /**

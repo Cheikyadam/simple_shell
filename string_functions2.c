@@ -109,27 +109,30 @@ void delete_letter(char *s, const char d[])
 
 	if (s != NULL)
 	{
-		l = _strlen(s);
-		for (i = 0; i < l - 1; i++)
+		if (s[0] != '\0')
 		{
-			if (s[i] == d[0] && s[i + 1] == d[0])
-			{
-				for (j = i + 1; j < l; j++)
-					s[j] = s[j + 1];
-				i--;
-			}
-		}
-
-		l = _strlen(s);
-		if (s[l - 1] == d[0])
-			s[l - 1] = '\0';
-
-		l = _strlen(s);
-		if (s[0] == d[0])
-		{
+			l = _strlen(s);
 			for (i = 0; i < l - 1; i++)
-				s[i] = s[i + 1];
-			s[l - 1] = '\0';
+			{
+				if (s[i] == d[0] && s[i + 1] == d[0])
+				{
+					for (j = i + 1; j < l; j++)
+						s[j] = s[j + 1];
+					i--;
+				}
+			}
+
+			l = _strlen(s);
+			if (s[l - 1] == d[0])
+				s[l - 1] = '\0';
+
+			l = _strlen(s);
+			if (s[0] == d[0])
+			{
+				for (i = 0; i < l - 1; i++)
+					s[i] = s[i + 1];
+				s[l - 1] = '\0';
+			}
 		}
 	}
 }

@@ -80,5 +80,6 @@ int cd_handler(char **args);
 void handle_sigint(int sig);
 void endSeCol(char *s);
 int _strstr(char *haystack, char *needle);
+char *existH(char **P, char *file);
 
 #endif
