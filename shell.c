@@ -64,6 +64,7 @@ int h_forkEnd(char **args)
 {
 	pid_t p;
 	int exit_s, status;
+	char **envp = environ;
 
 	p = fork();
 	if (p == -1)
@@ -73,7 +74,7 @@ int h_forkEnd(char **args)
 	}
 	if (p == 0)
 	{
-		if ((execve(args[0], args, NULL) == -1))
+		if ((execve(args[0], args, envp) == -1))
 		{       EXIT_CODE = -1;
 			return (-1);
 		}
@@ -176,7 +177,7 @@ int main(int ac, char **av, char **env)
 	{
 		signal(SIGINT, handle_sigint);
 		if (av[1] != NULL)
-			file_mode(av, env);
+			file_mode(av, environ);
 		else
 		{
 			if (isatty(STDIN_FILENO))
