@@ -154,7 +154,7 @@ void non_ith(char *com, char **av, char **env)
 			choice_maker(l_com[i], av, env);
 			i++;
 		}
-
+		free_p(l_com);
 	}
 }
 
