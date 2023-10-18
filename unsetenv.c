@@ -22,7 +22,7 @@ void exit_handler(char **args, char *s, char **l_com, int n)
 		write(STDERR_FILENO, "./hsh: 1: exit: Illegal number: ",
 				_strlen("./hsh: 1: exit: Illegal number: "));
 		write(STDERR_FILENO, args[1], _strlen(args[1]));
-		_putchar('\n');
+		write(STDERR_FILENO, "\n", 1);
 		exit(2);
 	}
 	free_p(args);
